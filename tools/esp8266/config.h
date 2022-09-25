@@ -12,8 +12,8 @@
 //-------------------------------------
 
 // Fallback WiFi Info
-#define FB_WIFI_SSID    "YOUR_WIFI_SSID"
-#define FB_WIFI_PWD     "YOUR_WIFI_PWD"
+#define FB_WIFI_SSID    "Blacknet@Wohnzimmer"
+#define FB_WIFI_PWD     "Ueberlingen2019"
 
 
 // Access Point Info
@@ -31,7 +31,7 @@
 //-------------------------------------
 
 // time in seconds how long the station info (ssid + pwd) will be tried
-#define WIFI_TRY_CONNECT_TIME   30
+#define WIFI_TRY_CONNECT_TIME   60
 
 // time during the ESP will act as access point on connection failure (to
 // station) in seconds
@@ -41,9 +41,9 @@
 #define DEF_DEVICE_NAME         "AHOY-DTU"
 
 // default pinout (GPIO Number)
-#define DEF_RF24_CS_PIN         15
-#define DEF_RF24_CE_PIN         2
-#define DEF_RF24_IRQ_PIN        0
+#define DEF_RF24_CS_PIN         5
+#define DEF_RF24_CE_PIN         4
+#define DEF_RF24_IRQ_PIN        16
 
 // default radio ID
 #define DTU_RADIO_ID            ((uint64_t)0x1234567801ULL)
