@@ -57,6 +57,12 @@ void app::loop(void) {
         mUptimeSecs++;
         if(0 != mTimestamp)
             mTimestamp++;
+
+            #ifdef SHELLY_ACTIVE   //Better location with own ticker needed 
+            if(!apActive) {
+                double shelly_power = mWifi->getShellyPower();
+            }     
+            #endif
     }
 
     if(checkTicker(&mNtpRefreshTicker, mNtpRefreshInterval)) {
@@ -65,6 +71,8 @@ void app::loop(void) {
             DPRINTLN(DBG_INFO, "[NTP]: " + getDateTimeStr(mTimestamp));
         }
     }
+
+
 
 
     mSys->Radio.loop();

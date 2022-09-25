@@ -25,6 +25,11 @@
 // If the next line is uncommented, Ahoy will stay in access point mode all the time
 //#define AP_ONLY
 
+//Shelly 3em
+#define SHELLY_ACTIVE
+#define SHELLY_IP_ADRESS "http://192.168.0.101/"
+#define SHELLY_INTERVALL 1000
+
 
 //-------------------------------------
 // CONFIGURATION - COMPILE TIME

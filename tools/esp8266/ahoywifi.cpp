@@ -212,6 +212,47 @@ time_t ahoywifi::getNtpTime(void) {
 }
 
 
+#ifdef SHELLY_ACTIVE        
+double ahoywifi::getShellyPower(void) {
+    HTTPClient http;
+    DynamicJsonDocument doc(2048);
+    double shelly_power = 0;
+
+    String serverPath = "http://192.168.0.101/status";
+
+    // Your Domain name with URL path or IP address with path
+    http.begin(serverPath.c_str());
+
+    // Send HTTP GET request
+    int httpResponseCode = http.GET();
+
+    if (httpResponseCode>0) {
+        //Serial.print("HTTP Response code: ");
+        // Serial.println(httpResponseCode);
+        String payload = http.getString();
+        //Serial.println(payload);
+        DeserializationError error = deserializeJson(doc, payload);
+
+        // Test if parsing succeeds.
+        if (error) {
+            Serial.print(F("deserializeJson() failed: "));
+            Serial.println(error.f_str());
+            return shelly_power;
+        }
+        shelly_power = doc["total_power"];
+        Serial.println(shelly_power);
+    }
+    else {
+        Serial.print("Error code: ");
+        Serial.println(httpResponseCode);
+    }
+    // Free resources
+    http.end();
+    return shelly_power;
+}
+#endif
+
+
 //-----------------------------------------------------------------------------
 void ahoywifi::sendNTPpacket(IPAddress& address) {
     //DPRINTLN(DBG_VERBOSE, F("wifi::sendNTPpacket"));

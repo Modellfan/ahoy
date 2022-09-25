@@ -21,7 +21,10 @@
 #include <DNSServer.h>
 
 #include "defines.h"
-
+#ifdef SHELLY_ACTIVE
+    #include <ArduinoJson.h>
+    #include <HTTPClient.h>
+#endif
 #include "app.h"
 
 class app;
@@ -37,6 +40,10 @@ class ahoywifi {
         bool setupStation(uint32_t timeout);
         bool getApActive(void);
         time_t getNtpTime(void);
+        #ifdef SHELLY_ACTIVE
+            double getShellyPower(void);
+        #endif
+         
         
     private:
         void sendNTPpacket(IPAddress& address);
